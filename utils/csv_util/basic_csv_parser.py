@@ -23,6 +23,7 @@ def get_data_frame(filename, specific_path=None):
             raise Exception("too many files found!", filename)
         elif length == 0:
             raise Exception("0 file found!", filename)
+            print("OK")
         else:
             file_path = target_files[0]
     return pandas.read_csv(file_path)
