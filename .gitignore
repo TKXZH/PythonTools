@@ -102,4 +102,5 @@ ENV/
 #pycharm
 .idea/
 
+data_analysis/vehicle/*.csv
 
