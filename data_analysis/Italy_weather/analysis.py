@@ -18,6 +18,7 @@ df_asti = pd.read_csv('data/asti_270615.csv')
 df_bologna = pd.read_csv('data/bologna_270615.csv')
 df_piacenza = pd.read_csv('data/piacenza_270615.csv')
 df_cesena = pd.read_csv('data/cesena_270615.csv')
+pd.DataFrame()
 
 y1 = df_ravenna['temp']
 x1 = df_ravenna['day']
