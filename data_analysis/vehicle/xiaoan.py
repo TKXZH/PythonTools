@@ -10,16 +10,29 @@ data3 = pd.read_excel('data/文件3.xlsx', index_col='时间')
 
 
 def pre(vehicle_df: pd.DataFrame):
+    print('处理之前文件的行数为:{}'.format(vehicle_df.shape[0]))
     ## 格式化时间字段
     vehicle_df.index = pd.to_datetime(vehicle_df.index, format='%Y/%m/%d %H:%M:%S.000.')
+    vehicle_df['时间'] = vehicle_df.index
     return vehicle_df
 
 
+# def operation1(vehicle_df: pd.DataFrame) -> pd.DataFrame:
+#     # 1. 按秒进行重新采样
+#     # 2. 线性回归填充缺失值
+#     print("正在进行缺失数据重新采样...")
+#     res = vehicle_df.asfreq('1S').interpolate()
+#     print('填补缺失数据后的行数为:{}'.format(res.shape[0]))
+#     return res
+
 def operation1(vehicle_df: pd.DataFrame) -> pd.DataFrame:
     # 1. 按秒进行重新采样
-    # 2. 线性回归填充缺失值
+    # 2. 只重新填充一秒以内的缺失数据
     print("正在进行缺失数据重新采样...")
-    return vehicle_df.asfreq('1S').interpolate()
+    res = vehicle_df.asfreq('1S').fillna(method='bfill',limit=1).dropna()
+    print('填补缺失数据后的行数为:{}'.format(res.shape[0]))
+    return res
+
 
 
 def operation2(vehicle_df: pd.DataFrame) -> pd.DataFrame:
@@ -60,7 +73,9 @@ def operation3(vehicle_df: pd.DataFrame) -> pd.DataFrame:
         last_x = row.纬度
         last_y = row.经度
         last_time = row.name
-    return vehicle_df[~vehicle_df.index.isin(tobe_removed)]
+    res = vehicle_df[~vehicle_df.index.isin(tobe_removed)]
+    print('Operation3后的行数为:{}'.format(res.shape[0]))
+    return res
 
 
 def operation4(vehicle_df: pd.DataFrame) -> pd.DataFrame:
@@ -84,7 +99,9 @@ def operation4(vehicle_df: pd.DataFrame) -> pd.DataFrame:
             low_speed_over_time = False
             low_speed_start_time = None
             current_set = set()
-    return vehicle_df[~vehicle_df.index.isin(tobe_removed)]
+    res = vehicle_df[~vehicle_df.index.isin(tobe_removed)]
+    print('Operation4后的行数为:{}'.format(res.shape[0]))
+    return res
 
 def clean(data, name):
     formatted = pre(data)
