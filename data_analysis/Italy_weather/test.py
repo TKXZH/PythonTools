@@ -33,18 +33,18 @@ for i in data.columns:
 
 from datetime import timedelta
 t = timedelta(0)
-data.index = [list('abcdefg')]
-print(data[1][1])
-print(data)
+# data.index = [list('abcdefg')]
+# print(data[1][1])
+# print(data)
 
 
+class Game:
+    def __init__(self, age):
+        self.age = age
 
-def test():
-    a = 1
-    if a < 10:
-        print("sda")
-    if a < 100:
-        print("sdasdasda")
+    def __str__(self):
+        return "fixed"
 
-test()
+res = data.apply(lambda x: x.apply(lambda y:Game(y)))
+print(res[0].dtype)
 

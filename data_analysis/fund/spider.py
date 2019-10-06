@@ -6,9 +6,7 @@ import demjson
 import re
 import requests
 from bs4 import BeautifulSoup
-
-import config
-
+from . import config
 
 def fetch_from_east_money_by_page(date_start, date_end, code, page):
     response = requests.get(config.fund_detail_url,

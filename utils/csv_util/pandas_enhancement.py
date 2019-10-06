@@ -10,5 +10,7 @@ def select(df, columns):
         raise Exception('columns should be list!')
     return df[columns]
 
+roq = pd.read_csv("/Users/zonghuixu/Downloads/roq_result.csv")
 
-pd.DataFrame.select = select
+print(roq[roq.sku == 134359]['forecast21Avg'])
+
