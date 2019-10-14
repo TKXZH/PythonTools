@@ -14,3 +14,4 @@ roq = pd.read_csv("/Users/zonghuixu/Downloads/roq_result.csv")
 
 print(roq[roq.sku == 134359]['forecast21Avg'])
 
+

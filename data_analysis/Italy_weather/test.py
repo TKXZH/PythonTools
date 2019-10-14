@@ -47,4 +47,11 @@ class Game:
 
 res = data.apply(lambda x: x.apply(lambda y:Game(y)))
 print(res[0].dtype)
+data.index = [list('abcdefg')]
+print(data[1][1])
+print(data)
+
+
+
+
 
