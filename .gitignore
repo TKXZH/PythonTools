@@ -104,3 +104,6 @@ ENV/
 
 data_analysis/vehicle/*.csv
 
+# mac os file system
+*.DS_Store
+
